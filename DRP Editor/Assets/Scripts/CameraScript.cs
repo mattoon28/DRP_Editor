@@ -18,6 +18,7 @@ public class CameraScript : MonoBehaviour
     float xRotation;
 
     float cameraDistance = -5f;
+    public float minCameraDistance;
 
     public float holdSensibility;
 
@@ -26,6 +27,8 @@ public class CameraScript : MonoBehaviour
 
     public int clickTimes;
     public float resetTimer;
+
+    public float zoomDoubleClick;
 
     void Start()
     {
@@ -38,6 +41,7 @@ public class CameraScript : MonoBehaviour
         Rotate();
         Move();
         Zoom();
+        FixedVariables();
     }
 
     private void GetInput()
@@ -57,7 +61,7 @@ public class CameraScript : MonoBehaviour
             if (editingScript.selectionObject != null && editingScript.toolsType == "Selection")
             {
                 aimingPoint.position = editingScript.selectionObject.transform.position;
-                cameraDistance = -7f;
+                cameraDistance = zoomDoubleClick;
             }
         }
     }
@@ -70,7 +74,7 @@ public class CameraScript : MonoBehaviour
 
     private void Rotate()
     {
-        if (Input.GetMouseButton(2) && !Input.GetKey("left shift"))
+        if (Input.GetMouseButton(2) && !Input.GetKey("left shift") && !Input.GetKey(KeyCode.LeftControl))
         {
             yRotation += mouseX;
             xRotation -= mouseY;
@@ -89,8 +93,21 @@ public class CameraScript : MonoBehaviour
 
     private void Zoom()
     {
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetMouseButton(2))
+        {
+            cameraDistance -= mouseY * cameraDistance * 0.01f;
+        }
+        
         cameraDistance -= Input.mouseScrollDelta.y * cameraDistance * 0.1f;
         cameraPos.localPosition = new Vector3(0f, 0f, cameraDistance);
         //aimingPoint.position = Vector3.MoveTowards(aimingPoint.position, zoomPointTrans.position, cameraDistance * Input.mouseScrollDelta.y * -0.1f);
+    }
+
+    private void FixedVariables()
+    {
+        if (cameraDistance >= minCameraDistance)
+        {
+            cameraDistance = minCameraDistance;
+        }
     }
 }

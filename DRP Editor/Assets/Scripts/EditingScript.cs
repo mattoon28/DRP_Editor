@@ -6,6 +6,7 @@ public class EditingScript : MonoBehaviour
 {
     public Vector3 screenPosition;
     public Vector3 targetPoint;
+    public Vector3 addTargetPoint;
     public LayerMask terrainLayer;
     public LayerMask objectsLayer;
 
@@ -77,6 +78,7 @@ public class EditingScript : MonoBehaviour
     private void SelectionTool()
     {
         visualiseObject.SetActive(false);
+
         if (Input.GetMouseButtonDown(0))
         {
             if (Physics.Raycast(mouseRay, out selectionHitData, 8192f, objectsLayer))
@@ -87,6 +89,11 @@ public class EditingScript : MonoBehaviour
             {
                 selectionObject = null;
             }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Delete) && selectionObject != null)
+        {
+            Destroy(selectionObject);
         }
     }
 
@@ -102,15 +109,20 @@ public class EditingScript : MonoBehaviour
 
         if (!Input.GetMouseButton(2) && !Input.GetMouseButton(1))
         {
-            visualiseObject.transform.position = targetPoint;
+            visualiseObject.transform.position = addTargetPoint;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if ((Physics.Raycast(mouseRay, out RaycastHit addHitData, 8192f, terrainLayer)))
         {
-            GameObject NewObject;
-            NewObject = Instantiate(addObject, targetPoint, visualiseObject.transform.rotation, objectsGroup);
+            addTargetPoint = addHitData.point;
 
-            NewObject.SetActive(true);
+            if (Input.GetMouseButtonDown(0))
+            {
+                GameObject NewObject;
+                NewObject = Instantiate(addObject, addTargetPoint, visualiseObject.transform.rotation, objectsGroup);
+
+                NewObject.SetActive(true);
+            }
         }
     }
 
