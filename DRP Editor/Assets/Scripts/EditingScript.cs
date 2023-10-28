@@ -34,14 +34,14 @@ public class EditingScript : MonoBehaviour
 
     void Start()
     {
-        toolsType = "Selection";
+        toolsType = "Add";
     }
 
     void Update()
     {
         GetInput();
 
-        if (toolsType == "Selection")
+        if (toolsType == "Select")
         {
             SelectionTool();
         }
@@ -139,7 +139,7 @@ public class EditingScript : MonoBehaviour
 
     public void SelectionToolButton()
     {
-        toolsType = "Selection";
+        toolsType = "Select";
     }
 
     public void AddToolButton()

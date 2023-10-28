@@ -12,7 +12,7 @@ public class CameraScript : MonoBehaviour
 
     public Vector3 zoomPoint;
 
-    public float sensibility = 30f;
+    public float sensibility = 60f;
 
     float yRotation;
     float xRotation;
@@ -28,7 +28,7 @@ public class CameraScript : MonoBehaviour
     public int clickTimes;
     public float resetTimer;
 
-    public float zoomDoubleClick;
+    public float zoomDoubleClick = -30f;
 
     void Start()
     {
@@ -58,7 +58,7 @@ public class CameraScript : MonoBehaviour
         if (clickTimes >= 2)
         {
             clickTimes = 0;
-            if (editingScript.selectionObject != null && editingScript.toolsType == "Selection")
+            if (editingScript.selectionObject != null && editingScript.toolsType == "Select")
             {
                 aimingPoint.position = editingScript.selectionObject.transform.position;
                 cameraDistance = zoomDoubleClick;
