@@ -72,6 +72,8 @@ public class EditingScript : MonoBehaviour
             targetObject = hitData.transform.gameObject;
         }
 
+       
+
         threeDimensionCursor.position = targetPoint;
     }
 

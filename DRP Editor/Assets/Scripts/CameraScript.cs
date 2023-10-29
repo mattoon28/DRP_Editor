@@ -73,15 +73,21 @@ public class CameraScript : MonoBehaviour
     }
 
     private void Rotate()
-    {
+    {   
+        if (Input.GetMouseButtonDown(2))
+
+        {
+            aimingPoint.position = editingScript.targetPoint;
+        }
+
         if (Input.GetMouseButton(2) && !Input.GetKey("left shift") && !Input.GetKey(KeyCode.LeftControl))
         {
             yRotation += mouseX;
             xRotation -= mouseY;
-
             aimingPoint.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
         }
     }
+
 
     private void Move()
     {
@@ -97,7 +103,7 @@ public class CameraScript : MonoBehaviour
         {
             cameraDistance -= mouseY * cameraDistance * 0.01f;
         }
-        
+
         cameraDistance -= Input.mouseScrollDelta.y * cameraDistance * 0.1f;
         cameraPos.localPosition = new Vector3(0f, 0f, cameraDistance);
         //aimingPoint.position = Vector3.MoveTowards(aimingPoint.position, zoomPointTrans.position, cameraDistance * Input.mouseScrollDelta.y * -0.1f);
