@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class EditingScript : MonoBehaviour
 {
@@ -16,7 +17,6 @@ public class EditingScript : MonoBehaviour
     public GameObject selectionObject;
 
     public Transform objectsGroup;
-
     public Transform threeDimensionCursor;
 
     public float objectYRotation;
@@ -29,12 +29,14 @@ public class EditingScript : MonoBehaviour
     public RaycastHit selectionHitData;
     public Ray mouseRay;
 
+
+
     float mouseX;
     float mouseY;
 
     void Start()
     {
-        toolsType = "Add";
+        toolsType = "Select";
     }
 
     void Update()
@@ -99,6 +101,7 @@ public class EditingScript : MonoBehaviour
         }
     }
 
+    public int idObstacle;
     private void AddTool()
     {
         visualiseObject.SetActive(true);
@@ -114,7 +117,7 @@ public class EditingScript : MonoBehaviour
             visualiseObject.transform.position = addTargetPoint;
         }
 
-        if ((Physics.Raycast(mouseRay, out RaycastHit addHitData, 8192f, terrainLayer)))
+        if (Physics.Raycast(mouseRay, out RaycastHit addHitData, 8192f, terrainLayer))
         {
             addTargetPoint = addHitData.point;
 
@@ -122,6 +125,7 @@ public class EditingScript : MonoBehaviour
             {
                 GameObject NewObject;
                 NewObject = Instantiate(addObject, addTargetPoint, visualiseObject.transform.rotation, objectsGroup);
+                NewObject.GetComponent<MeshModifier>().setId(idObstacle++);
 
                 NewObject.SetActive(true);
             }

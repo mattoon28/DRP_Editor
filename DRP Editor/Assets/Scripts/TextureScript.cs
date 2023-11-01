@@ -27,13 +27,13 @@ public class TextureScript : MonoBehaviour
         if (gameObject == selectionObject && editingScript.toolsType == "Select")
         {
             mats[0] = selectionMaterial;
-            Debug.Log(gameObject.name + " is selectioned");
+            //Debug.Log(gameObject.name + " is selectioned");
         }
 
         else if (gameObject != selectionObject && editingScript.toolsType == "Select")
         {
             mats[0] = nullMaterial;
-            Debug.Log(gameObject.name + " is not selectioned");
+            //Debug.Log(gameObject.name + " is not selectioned");
         }
 
         if (editingScript.toolsType != "Select")

@@ -12,12 +12,12 @@ public class CameraScript : MonoBehaviour
 
     public Vector3 zoomPoint;
 
-    public float sensibility = 60f;
+    public float sensibility = 30f;
 
     float yRotation;
     float xRotation;
 
-    float cameraDistance = -5f;
+    float cameraDistance = -70f;
     public float minCameraDistance;
 
     public float holdSensibility;
@@ -28,11 +28,11 @@ public class CameraScript : MonoBehaviour
     public int clickTimes;
     public float resetTimer;
 
-    public float zoomDoubleClick = -30f;
+    public float zoomDoubleClick = -50f;
 
     void Start()
     {
-
+        aimingPoint.localRotation = Quaternion.Euler(50f, 50f, 0f);
     }
 
     void Update()

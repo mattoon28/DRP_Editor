@@ -7,8 +7,12 @@ public class MeshModifier : MonoBehaviour
     public MeshFilter modelToChange;
     public Mesh[] modelToUse;
     public int currentModel;
-    public int obstacleId;
-    private MeshFilter meshFilter;
+    public EditingScript editingScript;
+
+
+    public int idObstacleSelected;
+    public int idObstacle;
+
 
     private void Start()
     {
@@ -16,14 +20,25 @@ public class MeshModifier : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M) && obstacleId == 2)
+  
+        idObstacleSelected = editingScript.selectionObject.GetComponent<MeshModifier>().idObstacle;
+
+        if (Input.GetKeyDown(KeyCode.M) && idObstacleSelected == gameObject.GetComponent<MeshModifier>().idObstacle) 
         {
-            modelToChange.mesh = modelToUse[currentModel];
             currentModel++;
             if (currentModel >= modelToUse.Length)
-            {
-                currentModel = 0;
-            }
+                {
+                    currentModel = 0;
+                }
+
+            modelToChange.mesh = modelToUse[currentModel];
         }
+
+    }
+    public void setId(int x)
+    {
+        idObstacle = x;
     }
 }
+
+
