@@ -6,7 +6,9 @@ using System.IO;
 
 public class SaveSystem : MonoBehaviour
 {
+    public int obstacleNumber;
     [SerializeField] Obstacle obstaclePrefab;
+    [SerializeField] Transform objectsGroup;
     public static List<Obstacle> obstacles = new List<Obstacle>();
 
     const string Obstacle_sub = "/obstacle";
@@ -21,7 +23,7 @@ public class SaveSystem : MonoBehaviour
     {
         SaveObstacle();
     }
- 
+
 
     void SaveObstacle()
     {
@@ -42,20 +44,24 @@ public class SaveSystem : MonoBehaviour
             formatter.Serialize(stream, data);
             stream.Close();
         }
+        Debug.Log(path);
     }
 
-    void LoadObstacle()
+    public void LoadObstacle()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + Obstacle_sub + SceneManager.GetActiveScene().buildIndex;
         string countPath = Application.persistentDataPath + Obstacle_Count_sub + SceneManager.GetActiveScene().buildIndex;
         int obstacleCount = 0;
 
+
         if (File.Exists(countPath))
         {
             FileStream countStream = new FileStream(countPath, FileMode.Open);
 
             obstacleCount = (int)formatter.Deserialize(countStream);
+
+
             countStream.Close();
 
         }
@@ -77,7 +83,7 @@ public class SaveSystem : MonoBehaviour
                 Quaternion orientation = new Quaternion(data.orientation[0], data.orientation[1], data.orientation[2], data.orientation[3]);
 
 
-                Obstacle obstacle = Instantiate(obstaclePrefab, position, orientation);
+                Obstacle obstacle = Instantiate(obstaclePrefab, position, orientation, objectsGroup);
 
                 obstacle.type = data.type;
                 obstacle.id = data.id;

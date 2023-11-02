@@ -197,7 +197,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 28860164}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -346,6 +346,7 @@ MonoBehaviour:
   objectYRotation: 0
   rotationSensibility: 1500
   toolsType: 
+  objectSelected: 0
   idObstacle: 0
 --- !u!1 &65534174
 GameObject:
@@ -864,7 +865,6 @@ GameObject:
   - component: {fileID: 631057551}
   - component: {fileID: 631057550}
   - component: {fileID: 631057547}
-  - component: {fileID: 631057549}
   - component: {fileID: 631057552}
   - component: {fileID: 631057553}
   m_Layer: 7
@@ -903,26 +903,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &631057549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 631057546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d478c07874b5c744cabd1655f8fce821, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelToChange: {fileID: 631057551}
-  modelToUse:
-  - {fileID: 6786657193949735856, guid: f574db5b14e2401458f4901968ab0e6b, type: 3}
-  - {fileID: -8269260356633741888, guid: 584a51eb53f387f40a05221ca46e9a2d, type: 3}
-  currentModel: 0
-  editingScript: {fileID: 44232768}
-  idObstacleSelected: 0
-  idObstacle: 0
 --- !u!23 &631057550
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1003,6 +983,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   id: 0
+  modelToChange: {fileID: 631057551}
+  modelToUse:
+  - {fileID: 6786657193949735856, guid: f574db5b14e2401458f4901968ab0e6b, type: 3}
+  - {fileID: -8269260356633741888, guid: 584a51eb53f387f40a05221ca46e9a2d, type: 3}
+  editingScript: {fileID: 44232768}
+  idObstacleSelected: 0
 --- !u!1 &644580013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 926753583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2158,7 +2144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3b66439636beb468fdb0dccada6536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleNumber: 0
   obstaclePrefab: {fileID: 631057553}
+  objectsGroup: {fileID: 14918123}
 --- !u!4 &2013717381
 Transform:
   m_ObjectHideFlags: 0

@@ -34,6 +34,8 @@ public class EditingScript : MonoBehaviour
     float mouseX;
     float mouseY;
 
+    public bool objectSelected;
+
     void Start()
     {
         toolsType = "Select";
@@ -41,6 +43,7 @@ public class EditingScript : MonoBehaviour
 
     void Update()
     {
+
         GetInput();
 
         if (toolsType == "Select")
@@ -80,6 +83,7 @@ public class EditingScript : MonoBehaviour
     }
 
     private void SelectionTool()
+
     {
         visualiseObject.SetActive(false);
 
@@ -88,20 +92,24 @@ public class EditingScript : MonoBehaviour
             if (Physics.Raycast(mouseRay, out selectionHitData, 8192f, objectsLayer))
             {
                 selectionObject = selectionHitData.transform.gameObject;
+                objectSelected = true;
             }
             else if (!Physics.Raycast(mouseRay, out hitData, 8192f, objectsLayer))
             {
                 selectionObject = null;
+                objectSelected = false;
             }
         }
 
         if(Input.GetKeyDown(KeyCode.Delete) && selectionObject != null)
         {
             Destroy(selectionObject);
+            objectSelected = false;
         }
     }
 
     public int idObstacle;
+    
     private void AddTool()
     {
         visualiseObject.SetActive(true);
@@ -125,7 +133,7 @@ public class EditingScript : MonoBehaviour
             {
                 GameObject NewObject;
                 NewObject = Instantiate(addObject, addTargetPoint, visualiseObject.transform.rotation, objectsGroup);
-                NewObject.GetComponent<MeshModifier>().setId(idObstacle++);
+                NewObject.GetComponent<Obstacle>().setId(idObstacle++);
 
                 NewObject.SetActive(true);
             }
@@ -139,6 +147,7 @@ public class EditingScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && targetObject.layer == 7)
         {
             Destroy(targetObject);
+            objectSelected = false;
             Debug.Log("Deleted " + targetObject.name);           
         }
     }
