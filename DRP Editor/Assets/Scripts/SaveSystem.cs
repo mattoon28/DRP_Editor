@@ -84,6 +84,7 @@ public class SaveSystem : MonoBehaviour
 
 
                 Obstacle obstacle = Instantiate(obstaclePrefab, position, orientation, objectsGroup);
+                obstacle.GetComponent<Obstacle>().enabled = true;
 
                 obstacle.type = data.type;
                 obstacle.id = data.id;

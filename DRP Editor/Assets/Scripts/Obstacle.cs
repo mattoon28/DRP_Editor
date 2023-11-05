@@ -15,9 +15,13 @@ public class Obstacle : MonoBehaviour
     public EditingScript editingScript;
     public int idObstacleSelected;
 
-    void Awake()
+    void OnEnable()
     {
-        SaveSystem.obstacles.Add(this);
+        if (gameObject.GetComponent<Obstacle>().isActiveAndEnabled)
+        {
+            SaveSystem.obstacles.Add(this);
+        }
+        
     }
 
     void OnDestroy()
@@ -32,6 +36,7 @@ public class Obstacle : MonoBehaviour
 
     void Update()
     {
+
         if (editingScript.objectSelected)
         {
             idObstacleSelected = editingScript.selectionObject.GetComponent<Obstacle>().id;

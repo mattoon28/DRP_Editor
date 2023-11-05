@@ -133,6 +133,7 @@ public class EditingScript : MonoBehaviour
             {
                 GameObject NewObject;
                 NewObject = Instantiate(addObject, addTargetPoint, visualiseObject.transform.rotation, objectsGroup);
+                NewObject.GetComponent<Obstacle>().enabled = true;
                 NewObject.GetComponent<Obstacle>().setId(idObstacle++);
 
                 NewObject.SetActive(true);
