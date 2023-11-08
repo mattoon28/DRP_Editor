@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028355, g: 0.22571374, b: 0.30692255, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -503,7 +503,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 199679cbba2af7e44a722af1b45d3ab7,
         type: 3}
       propertyPath: m_Name
-      value: 1
+      value: G1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 199679cbba2af7e44a722af1b45d3ab7, type: 3}
@@ -1026,6 +1026,7 @@ MonoBehaviour:
   ObjectType: 
   gateGroup: {fileID: 400450834}
   ladderGroup: {fileID: 959519027}
+  ArrowDirection: 000000000000000000000000
 --- !u!1 &644580013
 GameObject:
   m_ObjectHideFlags: 0

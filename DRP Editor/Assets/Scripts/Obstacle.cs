@@ -19,6 +19,7 @@ public class Obstacle : MonoBehaviour
     public string ObjectType;
     public GameObject gateGroup;
     public GameObject ladderGroup;
+    public int[] ArrowDirection;
 
     void OnEnable()
     {
@@ -67,6 +68,7 @@ public class Obstacle : MonoBehaviour
         id = x;
     }
 
+
     void ArrowsObstacleType()
     {
         if(type == 0)
@@ -74,6 +76,14 @@ public class Obstacle : MonoBehaviour
             ObjectType = "Gate";
             gateGroup.SetActive(true);
             ladderGroup.SetActive(false);
+            if (ArrowDirection[0]== 1)
+            {
+                GameObject.Find("G1").GetComponent<Transform>().rotation = new Quaternion(0f,90f, 0f, 0f);  // ça marche pas ...
+            }
+            else if (ArrowDirection[0] == -1)
+            {
+                GameObject.Find("G1").GetComponent<Transform>().rotation = new Quaternion(0f, -90f, 0f, 0f);
+            }
         }
 
         if (type == 1)
