@@ -15,6 +15,11 @@ public class Obstacle : MonoBehaviour
     public EditingScript editingScript;
     public int idObstacleSelected;
 
+    [Header("Arrows")]
+    public string ObjectType;
+    public GameObject gateGroup;
+    public GameObject ladderGroup;
+
     void OnEnable()
     {
         if (gameObject.GetComponent<Obstacle>().isActiveAndEnabled)
@@ -54,9 +59,28 @@ public class Obstacle : MonoBehaviour
             modelToChange.mesh = modelToUse[type];
         }
 
+        ArrowsObstacleType();
     }
+
     public void setId(int x)
     {
         id = x;
+    }
+
+    void ArrowsObstacleType()
+    {
+        if(type == 0)
+        {
+            ObjectType = "Gate";
+            gateGroup.SetActive(true);
+            ladderGroup.SetActive(false);
+        }
+
+        if (type == 1)
+        {
+            ObjectType = "Ladder";
+            gateGroup.SetActive(false);
+            ladderGroup.SetActive(true);
+        }
     }
 }
