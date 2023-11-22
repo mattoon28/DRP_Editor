@@ -63,6 +63,12 @@ public class CameraScript : MonoBehaviour
                 aimingPoint.position = editingScript.selectionObject.transform.position;
                 cameraDistance = zoomDoubleClick;
             }
+            
+            if (editingScript.objectSelected == false)
+            {
+                aimingPoint.position = editingScript.targetPoint;
+            }
+
         }
     }
 
@@ -74,12 +80,7 @@ public class CameraScript : MonoBehaviour
 
     private void Rotate()
     {   
-        if (Input.GetMouseButtonDown(2))
-
-        {
-            aimingPoint.position = editingScript.targetPoint;
-        }
-
+        
         if (Input.GetMouseButton(2) && !Input.GetKey("left shift") && !Input.GetKey(KeyCode.LeftControl))
         {
             yRotation += mouseX;
