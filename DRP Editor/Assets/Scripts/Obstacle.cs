@@ -19,7 +19,10 @@ public class Obstacle : MonoBehaviour
     public string ObjectType;
     public GameObject gateGroup;
     public GameObject ladderGroup;
-    public int[] ArrowDirection;
+    public int[] arrowDirection;
+    public GameObject[] arrowObjects;
+
+    public GameObject ObstacleObject;
 
     void OnEnable()
     {
@@ -76,14 +79,13 @@ public class Obstacle : MonoBehaviour
             ObjectType = "Gate";
             gateGroup.SetActive(true);
             ladderGroup.SetActive(false);
-            if (ArrowDirection[0]== 1)
-            {
-                GameObject.Find("G1").GetComponent<Transform>().rotation = new Quaternion(0f,90f, 0f, 0f);  // ça marche pas ...
-            }
-            else if (ArrowDirection[0] == -1)
-            {
-                GameObject.Find("G1").GetComponent<Transform>().rotation = new Quaternion(0f, -90f, 0f, 0f);
-            }
+
+            arrowObjects = new GameObject[1];
+
+            ObstacleObject = gateGroup;
+
+            // assigner toute la liste aux flèches
+            arrowObjects[0] = ObstacleObject.transform.Find("G1").gameObject;
         }
 
         if (type == 1)
@@ -91,6 +93,15 @@ public class Obstacle : MonoBehaviour
             ObjectType = "Ladder";
             gateGroup.SetActive(false);
             ladderGroup.SetActive(true);
+
+            arrowObjects = new GameObject[3];
+
+            ObstacleObject = ladderGroup;
+
+            // assigner toute la liste aux flèches
+            arrowObjects[0] = ObstacleObject.transform.Find("L1").gameObject;
+            arrowObjects[1] = ObstacleObject.transform.Find("L2").gameObject;
+            arrowObjects[2] = ObstacleObject.transform.Find("L3").gameObject;
         }
     }
 }
